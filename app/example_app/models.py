@@ -2,10 +2,21 @@ from django.db import models
 
 # Create your models here.
 
-class Todo(models.Model):
-    title = models.CharField(max_length=200)
-    completed = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+class CategoryModels(models.Model):
+    Category_no = models.IntegerField(unique=True)
+    Category_name = models.CharField(max_length=50)
+    Link_details = models.CharField(max_length=500, null=True,blank=True)
+    Active = models.BooleanField()
 
-    def __str__(self):
-        return self.title
+class SubCategoryModels(models.Model):
+    SubCategory_no = models.IntegerField(unique=True)
+    SubCategory_name= models.CharField(max_length=50)
+    category = models.ForeignKey("CategoryModels", on_delete=models.CASCADE)
+    Link_details = models.CharField(max_length=500,blank=True, null=True)
+    Active=models.BooleanField()
+
+
+
+
+
+    
